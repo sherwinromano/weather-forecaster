@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecaster</title>
+    <script src="app.js" defer></script>
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style/output.css">
+</head>
+<body>
+    <div class="h-screen w-full flex">
+        <!-- Video Background -->
+        <video class="w-full object-cover" autoplay loop muted>
+            <source src="assets/sky-bg.mp4" type="video/mp4">
+        </video>
+        <!-- Main Content -->
+        <div class="absolute w-full h-full">
+            <div class="w-full h-full p-4 gap-12 flex justify-between">
+                <!-- Main Section -->
+                <div class="glass h-full basis-full p-4 rounded-14 overflow-hidden">
+                    <div class="h-full scroll pr-1 overflow-y-scroll">
+                        <!-- Search Bar-->
+                        <form class="bg-white rounded-lg flex items-center gap-10 p-3">
+                            <img class="w-5 h-5" src="assets/search-icon.png" alt="search icon">
+                            <input id="input-location" class="bg-transparent text-base basis-full outline-none px-3 border-l-2 border-input" type="text" placeholder="Search for cities or countries" autofocus autocomplete="off" required>
+                            <img id="clear-input" class="w-3 h-3 cursor-pointer hidden" src="assets/close-icon.png" alt="close icon">
+                        </form>
+                        <!-- Location Data -->
+                        <div class="p-4 h-40 flex justify-between mt-2">
+                            <div class="flex flex-col justify-between">
+                                <div>
+                                    <p id="city-name" class="font-medium leading-none text-42">--</p>
+                                    <p id="country-name" class="text-base text-sub">--</p>
+                                </div>
+                                <div>
+                                    <p id="weather-temp" class="font-medium leading-none text-42">--</p>
+                                    <p id="weather-text" class="text-base text-sub">--</p>
+                                </div>
+                            </div>
+                            <div class="self-center h-full">
+                                <img id="weather-img" class="h-full hidden" alt="weather img">
+                            </div>
+                        </div>
+                        <!-- Today Forecast -->
+                        <div class="bg-glass h-auto p-3 rounded-lg flex flex-col gap-2 overflow-hidden mt-2">
+                            <h2 class="text-base font-medium">Today's Forecast</h2>
+                            <div class="h-full flex items-center cursor-pointer gap-2">
+                                <div id="back-btn" class="p-2 bg-nav rounded-50 w-11">
+                                    <img src="assets/chevron.png" class="h-6 w-6" alt="chevron left">
+                                </div>
+                                <div id="today-forecast" class="h-full w-full flex overflow-auto scroll-smooth invisible">
+                                    <div class="today-forecast">
+                                        <p>12:00 AM</p>
+                                        <img id="hour-0" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-0-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>1:00 AM</p>
+                                        <img id="hour-1" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-1-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>2:00 AM</p>
+                                        <img id="hour-2" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-2-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>3:00 AM</p>
+                                        <img id="hour-3" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-3-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>4:00 AM</p>
+                                        <img id="hour-4" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-4-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>5:00 AM</p>
+                                        <img id="hour-5" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-5-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>6:00 AM</p>
+                                        <img id="hour-6" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-6-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>7:00 AM</p>
+                                        <img id="hour-7" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-7-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>8:00 AM</p>
+                                        <img id="hour-8" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-8-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>9:00 AM</p>
+                                        <img id="hour-9" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-9-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>10:00 AM</p>
+                                        <img id="hour-10" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-10-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>11:00 AM</p>
+                                        <img id="hour-11" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-11-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>12:00 PM</p>
+                                        <img id="hour-12" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-12-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>1:00 PM</p>
+                                        <img id="hour-13" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-13-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>2:00 PM</p>
+                                        <img id="hour-14" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-14-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>3:00 PM</p>
+                                        <img id="hour-15" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-15-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>4:00 PM</p>
+                                        <img id="hour-16" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-16-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>5:00 PM</p>
+                                        <img id="hour-17" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-17-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>6:00 PM</p>
+                                        <img id="hour-18" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-18-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>7:00 PM</p>
+                                        <img id="hour-19" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-19-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>8:00 PM</p>
+                                        <img id="hour-20" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-20-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>9:00 PM</p>
+                                        <img id="hour-21" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-21-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>10:00 PM</p>
+                                        <img id="hour-22" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-22-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                    <div class="today-forecast">
+                                        <p>11:00 PM</p>
+                                        <img id="hour-23" src="assets/sample.webp" class="w-20" alt="weather image">
+                                        <p id="hour-23-temp" class="font-semibold text-18">16 °C</p>
+                                    </div>
+                                </div>
+                                <div id="next-btn" class="p-2 bg-nav rounded-50 w-11">
+                                    <img src="assets/chevron.png" class="h-6 w-6 rotate-180" alt="chevron left">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Additional Info -->
+                        <div class="bg-glass h-auto p-3 rounded-lg flex flex-col gap-2 mt-2">
+                            <h2 class="text-base font-medium">Additional Information</h2>
+                            <div class="h-full grid grid-cols-auto gap-8 px-4 justify-between">
+                                <div class="flex gap-7">
+                                    <img src="assets/humidity.png" class="mb-6 h-5 w-5" alt="humidity icon">
+                                    <div class="flex flex-col">
+                                        <p class="font-medium">Humidity</p>
+                                        <p id="humidity">--</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-7">
+                                    <img src="assets/sun.png" class="mb-6 h-5 w-5" alt="sun icon">
+                                    <div class="flex flex-col">
+                                        <p class="font-medium">UV Index</p>
+                                        <p id="uv-index">--</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-7">
+                                    <img src="assets/sunrise.png" class="mb-6 h-5 w-5" alt="sunrise icon">
+                                    <div class="flex flex-col">
+                                        <p class="font-medium">Sunrise</p>
+                                        <p id="sunrise">--</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-7">
+                                    <img src="assets/windspeed.png" class="mb-6 h-5 w-5" alt="wind speed icon">
+                                    <div class="flex flex-col">
+                                        <p class="font-medium">Wind Speed</p>
+                                        <p id="wind-speed">--</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-7">
+                                    <img src="assets/cloud.png" class="mb-6 h-5 w-5" alt="gust icon">
+                                    <div class="flex flex-col">
+                                        <p class="font-medium">Cloud</p>
+                                        <p id="cloud">--</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-7">
+                                    <img src="assets/sunset.png" class="mb-6 h-5 w-5" alt="sunset icon">
+                                    <div class="flex flex-col">
+                                        <p class="font-medium">Sunset</p>
+                                        <p id="sunset">--</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sidebar Section -->
+                <div class="h-full basis-30 flex flex-col gap-12 rounded-14">
+                    <div class="glass p-4 flex justify-center rounded-14 some">
+                        <h1 class="font-bold leading-100 tracking-1 text-center text-3xl h-full w-auto">Weather Forecaster</h1>
+                    </div>
+                    <div class="glass h-full p-4 flex flex-col justify-between gap-4 rounded-14">
+                        <div class="bg-glass flex flex-col h-auto gap-2 p-4 rounded-lg">
+                            <h2 class="text-base font-medium">3 Day Forecast</h2>
+                            <div class="flex flex-col">
+                                <div class="flex flex-col border-b-1 border-gray py-2">
+                                    <p class="font-medium text-start">Today</p>
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex flex-col w-full">
+                                            <p id="day-one-temp" class="min-w-max text-2xl font-semibold">--</p>
+                                            <p id="day-one-text" class="text-start leading-95">--</p>
+                                        </div>
+                                        <div class="w-1/4 h-auto">
+                                            <img id="day-one-img" class="invisible" src="assets/sample.webp" alt="weather img">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col border-b-1 border-gray py-2">
+                                    <p class="font-medium text-start">Tomorrow</p>
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex flex-col w-full">
+                                            <p id="day-two-temp" class="min-w-max text-2xl font-semibold">--</p>
+                                            <p id="day-two-text" class="text-start leading-95">--</p>
+                                        </div>
+                                        <div class="w-1/4 h-full">
+                                            <img id="day-two-img" class="invisible" src="assets/sample.webp" alt="weather img">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col py-2">
+                                    <p class="font-medium text-start" id="day-three-day">--</p>
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex flex-col w-full">
+                                            <p id="day-three-temp" class="min-w-max text-2xl font-semibold">--</p>
+                                            <p id="day-three-text" class="text-start leading-95">--</p>
+                                        </div>
+                                        <div class="w-1/4 h-full">
+                                            <img id="day-three-img" class="invisible" src="assets/sample.webp" alt="weather img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="self-end flex flex-col items-end">
+                            <p class="text-14 text-gray">Powered by</p>
+                            <a href="https://www.weatherapi.com/" target="_blank" class="w-53">
+                                <img src="assets/weatherapi_logo.webp" alt="weather api logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Popup for error -->
+                <div id="popup" class="absolute scale-0 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 p-4 bg-white w-1/3 h-45 rounded-14 transition-all z-50">
+                    <div class="h-full w-full">
+                        <div class="h-full w-full flex flex-col items-center justify-between">
+                            <div class="h-45 w-1/3 translate-y-4">
+                                <img src="assets/error.png" class="h-full w-full" alt="error icon">
+                            </div>
+                            <div class="flex flex-col items-center gap-2">
+                                <div>
+                                    <h2 class="font-medium text-3xl leading-100 text-red-600">Invalid Location</h2>
+                                    <p class="text-center text-base">Please try again</p>
+                                </div>
+                                <div class="w-full flex justify-center">
+                                    <button id="popup-btn" class="bg-green-500 text-white uppercase w-1/2 p-2 rounded-4 font-medium">Ok</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- Overlay effect for popup -->
+                <div id="overlay" class="bg-black opacity-0 pointer-events-none absolute inset-0 transition-all"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

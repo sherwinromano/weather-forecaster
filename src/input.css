@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .today-forecast {
+        @apply flex flex-col justify-between items-center border-r-1 border-gray px-2 min-w-fit
+    }
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    color: #181818;
+}
+
+/* glass effect */
+.glass {
+    background-color: #ffffff60;
+    border: 1px solid #ffffff60;
+    backdrop-filter: blur(10px);
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+    width: 4px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    height: 3px;
+    background: #00000060;
+    border-radius: 52px;
+}
+
+#today-forecast::-webkit-scrollbar {
+    display: none;
+}
