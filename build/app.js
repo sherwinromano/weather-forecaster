@@ -28,7 +28,7 @@ document.querySelector('form').addEventListener('submit', e => {
 
 })
 
-// Today's forecast navigation event
+// Event for navigating today's forecast
 document.querySelector('#back-btn').addEventListener('click', () => {
     container.scrollLeft -= 400;
 })
@@ -158,9 +158,8 @@ async function getWeatherData() {
             clear_input.classList.add('hidden');
             input_location.value = "";
             input_location.focus();
-            console.log(response);
         }
     } catch (error) {
-        console.log(error);
+        alert(errror)
     }
 }
