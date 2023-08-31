@@ -20,12 +20,7 @@ input_location.addEventListener('input', () => {
 // Submit form event
 document.querySelector('form').addEventListener('submit', e => {
     e.preventDefault();
-    if(input_location.value == "") {
-        alert('Error')
-    } else {
-        getWeatherData();
-    }
-
+    getWeatherData();
 })
 
 // Event for navigating today's forecast
